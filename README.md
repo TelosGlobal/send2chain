@@ -5,9 +5,10 @@ This document explains how to setup an automatic recurring token transfer betwee
 
 # OVERVIEW
 First, we create a new permission "ACCOUNT/tgtrsfr" with a unique KEY
+
 NOTE: This unique key will only be allowed to transfer tokens from YOUR account. This prevents someone who may compromise this acct from performing other actions, but transferring tokens has significant consequences, so use caution.
 
-Next, we create a separate wallet "claim" and provide ONLY this unique KEY
+Next, we create a separate wallet "trsfr" and provide ONLY this unique KEY
 
 This shell script "send2chain.sh" will:
 
@@ -21,6 +22,7 @@ _Best practice is to setup a LOCAL USER cron job to run as frequently as you wis
 - Create new EOS KEY Pair (there are many ways to do this).
   NOTE: SAVE the KEY info!
 - Create permission:
+
 `cleos set account permission ACCOUNT_NAME tgtrsfr '{"threshold":1,"keys":[{"key":"YOUR_NEW_CLAIMER_PUB_KEY","weight":1}]}' "active" -p ACCOUNT_NAME@active`
 
 `cleos set action permission ACCOUNT_NAME eosio transfer tgtrsfr`
